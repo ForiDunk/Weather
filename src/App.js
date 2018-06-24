@@ -61,10 +61,10 @@ getWeather = async (e) => {
           <div className="main">
             <div className="container-fluid">
               <div className="row">
-                <div className="col-5 title-container">
+                <div className="col-sm-12 col-md-5 title-container">
                   <Title />
                 </div>
-                <div className="col-7 form-container">
+                <div className="col-sm-12 col-md-7 form-container">
                   <Form getWeather={this.getWeather} />
                   <WeatherDisplay 
                     temperature={this.state.temperature} 
