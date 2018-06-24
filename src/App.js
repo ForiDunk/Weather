@@ -23,7 +23,8 @@ getWeather = async (e) => {
   const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
   const data = await api_call.json();
 
-  if (city && country) {
+  if (city && country && data.cod !== "404") {
+    console.log(data);
     this.setState({
       temperature: data.main.temp,
       city: data.name,
@@ -31,6 +32,15 @@ getWeather = async (e) => {
       humidity: data.main.hunidity,
       description: data.weather[0].description,
       error: "" 
+    });
+  } else if (data.cod === "404") {
+    this.setState({
+      temperature: undefined,
+      city: undefined,
+      country: undefined,
+      humidity: undefined,
+      description: undefined,
+      error: data.message
     });
   } else {
     this.setState({
